@@ -8,7 +8,7 @@
 // window.__shotReady for a screenshot.
 import { STEP, VIEW_H, VIEW_W } from './config.js';
 import { applySave, createGameState, readSave, stepGame } from './game.js';
-import { ACTION_CONFIRM, ACTION_PAUSE, createInput } from './input.js';
+import { ACTION_CONFIRM, ACTION_MUTE, ACTION_PAUSE, createInput } from './input.js';
 import { hasSave } from './save.js';
 import { createRenderer, SCREEN_BUSTED, SCREEN_COMPLETE, SCREEN_PAUSED, SCREEN_PLAY, SCREEN_TITLE, SCREEN_WASTED } from './render.js';
 import { stageShot } from './shots.js';
@@ -111,6 +111,10 @@ function runGame() {
         screen = SCREEN_PLAY;
         announce('Playing.');
       }
+    }
+    if (actions & ACTION_MUTE) {
+      state.audio.setMuted(!state.audio.isMuted());
+      announce(state.audio.isMuted() ? 'Sound muted.' : 'Sound on.');
     }
     return actions;
   }
