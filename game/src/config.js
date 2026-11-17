@@ -1,61 +1,51 @@
-// Every tuning number and colour in one place. The playfield is a fixed 1280x720 logical area;
-// the renderer scales it to the window, so no rule below depends on the screen size.
+// Shared tuning numbers for Solmaris. Every other module reads these so the
+// feel of the city (speeds, sizes, wanted thresholds) lives in one place.
+export const VIEW_W = 1280;
+export const VIEW_H = 720;
 
-export const FIELD = { width: 1280, height: 720, groundY: 664 };
+export const WORLD_W = 3200;
+export const WORLD_H = 2400;
 
-/** The simulation's fixed step, in seconds: 60 updates a second whatever the display's rate. */
+// Road network: centre lines of the avenues (vertical) and streets (horizontal).
+export const AVENUES = [220, 620, 1020, 1420, 1820, 2220, 2620, 2980];
+export const STREETS = [220, 620, 1020, 1420, 1820, 2140];
+export const ROAD_W = 96;
+export const LANE_OFFSET = 22;
+
 export const STEP = 1 / 60;
 
-export const PLAYER = {
-  width: 72,
-  height: 24,
-  speed: 560,
-  invulnerable: 1.5,
-};
+export const PLAYER_WALK = 175;
+export const PLAYER_RUN = 265;
+export const PLAYER_RADIUS = 14;
+export const PLAYER_MAX_HEALTH = 100;
 
-export const LIVES = 3;
+export const CAR_LENGTH = 52;
+export const CAR_WIDTH = 26;
+export const CAR_TOP_SPEED = 560;
+export const CAR_ACCEL = 420;
+export const CAR_BRAKE = 640;
+export const CAR_REVERSE_SPEED = 180;
+export const CAR_MAX_HEALTH = 100;
 
-export const BLOCK = {
-  minWidth: 40,
-  maxWidth: 110,
-  height: 36,
-  speed: 240,
-  speedPerLevel: 30,
-  speedJitter: 90,
-  interval: 0.55,
-  intervalScale: 0.88,
-  minInterval: 0.14,
-  dodgePoints: 1,
-};
+export const TRAFFIC_COUNT = 16;
+export const PED_COUNT = 26;
 
-export const COIN = {
-  size: 24,
-  speed: 190,
-  speedPerLevel: 14,
-  interval: 1.4,
-  intervalJitter: 0.8,
-  points: 10,
-};
+export const WANTED_MAX = 5;
+// Heat points: crossing a threshold adds a star. Heat fades while the player
+// stays clean and out of sight.
+export const WANTED_THRESHOLDS = [0, 40, 110, 200, 320, 460];
+export const HEAT_DECAY_PER_SEC = 3.5;
+export const HEAT_STEAL_CAR = 45;
+export const HEAT_SHOOT = 30;
+export const HEAT_HIT_PED = 35;
+export const HEAT_KILL_PED = 60;
+export const HEAT_RAM_COP = 50;
 
-/** Seconds of play per level, and the last level: speeds and spawn rates stop growing there. */
-export const LEVEL = { seconds: 12, max: 12 };
+export const BULLET_SPEED = 900;
+export const BULLET_DAMAGE = 34;
+export const FIRE_COOLDOWN = 0.18;
 
-/** How many falling things can exist at once; the pool is allocated once, at boot. */
-export const POOL_SIZE = 64;
-
-export const PALETTE = {
-  backdrop: '#11141b',
-  sky: '#1b1f2a',
-  ground: '#2a3040',
-  player: '#4fc3f7',
-  block: '#e5534b',
-  coin: '#f2c94c',
-  panel: '#252b38',
-  text: '#eef1f5',
-  muted: '#8b93a3',
-};
-
-export const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
-
-/** Where the best score is kept between visits (this browser only). */
-export const BEST_KEY = 'block-dodger.best';
+export const DAY_LENGTH_SEC = 240; // one full day/night cycle in real seconds
+export const SAVE_KEY = 'solmaris-save-v1';
+export const GAME_TITLE = 'SOLMARIS';
+export const CITY_NAME = 'Solmaris';
